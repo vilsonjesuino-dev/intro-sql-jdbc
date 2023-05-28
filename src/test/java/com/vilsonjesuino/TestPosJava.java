@@ -1,5 +1,7 @@
 package com.vilsonjesuino;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import com.vilsonjesuino.dao.UserPosJavaDao;
@@ -17,6 +19,37 @@ public class TestPosJava {
 
     UserPosJavaDao userPosJavaDao = new UserPosJavaDao();
     userPosJavaDao.salvar(userPosJava);
+  }
+
+  @Test
+  public void listar() {
+    UserPosJavaDao dao = new UserPosJavaDao();
+    
+    try {
+      List<UserPosJava> listar = dao.listar();
+
+      for (UserPosJava userPosJava : listar) {
+        System.out.println(userPosJava);
+        System.out.println("---------------------------");
+      }
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Test
+  public void buscar() {
+    UserPosJavaDao dao = new UserPosJavaDao();
+
+    try {
+      
+      UserPosJava userPosJava = dao.buscar(1L);
+      System.out.println(userPosJava);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
   
 }
