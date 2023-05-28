@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class SingleConnection {
-  
+
   private static String url = "jdbc:postgresql://localhost:5432/introsqljdbc";
   private static String user = "postgres";
   private static String password = "admin";
@@ -24,7 +24,7 @@ public class SingleConnection {
         Class.forName("org.postgresql.Driver");
         conn = DriverManager.getConnection(url, user, password);
         conn.setAutoCommit(false);
-        //System.out.println("Connection Sucess!");
+        // System.out.println("Connection Sucess!");
       }
     } catch (Exception e) {
       e.printStackTrace();

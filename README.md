@@ -42,7 +42,7 @@
 - [x] Criando uma estrutura de DAO de acesso ao banco de dados
 - [x] Criando um INSERT ao banco de dados
 - [x] Criando uma consulta SQL ao banco de dados
-- [ ] Atualizando dados no banco de dados
+- [x] Atualizando dados no banco de dados
 - [ ] Criando uma sequencia para nossa tabela usuario
 - [ ] Deletando registro do banco de dados
 - [ ] Criando tabelas de telefones

@@ -3,6 +3,7 @@ package com.vilsonjesuino.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import com.vilsonjesuino.model.UserPosJava;
 import com.vilsonjesuino.util.SingleConnection;
 
 public class UserPosJavaDao {
-  
+
   private Connection conn;
 
   public UserPosJavaDao() {
@@ -22,7 +23,7 @@ public class UserPosJavaDao {
     String sql = "INSERT INTO userposjava (id, nome, email) VALUES (?, ?, ?)";
 
     try {
-      
+
       PreparedStatement statement = conn.prepareStatement(sql);
       statement.setLong(1, userPosJava.getId());
       statement.setString(2, userPosJava.getNome());
@@ -49,10 +50,9 @@ public class UserPosJavaDao {
         userPosJava.setId(resultado.getLong("id"));
         userPosJava.setNome(resultado.getString("nome"));
         userPosJava.setEmail(resultado.getString("email"));
-        
+
         lista.add(userPosJava);
       }
-
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -72,14 +72,35 @@ public class UserPosJavaDao {
       while (resultado.next()) {
         retorno.setId(resultado.getLong("id"));
         retorno.setNome(resultado.getString("nome"));
-        retorno.setEmail(resultado.getString("email")); 
+        retorno.setEmail(resultado.getString("email"));
       }
-
 
     } catch (Exception e) {
       e.printStackTrace();
     }
 
     return retorno;
+  }
+
+  public void atualizar (UserPosJava userPosJava) {
+
+    String sql = "UPDATE userposjava SET nome = ? WHERE id = " + userPosJava.getId();
+
+    try {
+      
+      PreparedStatement update = conn.prepareStatement(sql);
+      update.setString(1, userPosJava.getNome());
+
+      update.execute();
+      conn.commit();
+
+    } catch (Exception e) {
+      try {
+        conn.rollback();
+      } catch (SQLException e1) {
+        e1.printStackTrace();
+      }
+      e.printStackTrace();
+    }
   }
 }

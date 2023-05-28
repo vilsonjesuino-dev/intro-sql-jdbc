@@ -24,7 +24,7 @@ public class TestPosJava {
   @Test
   public void listar() {
     UserPosJavaDao dao = new UserPosJavaDao();
-    
+
     try {
       List<UserPosJava> listar = dao.listar();
 
@@ -43,7 +43,7 @@ public class TestPosJava {
     UserPosJavaDao dao = new UserPosJavaDao();
 
     try {
-      
+
       UserPosJava userPosJava = dao.buscar(1L);
       System.out.println(userPosJava);
 
@@ -51,5 +51,25 @@ public class TestPosJava {
       e.printStackTrace();
     }
   }
-  
+
+  @Test
+  public void atualizar() {
+    UserPosJavaDao dao = new UserPosJavaDao();
+
+    try {
+
+      UserPosJava objetoBanco = dao.buscar(1L);
+      System.out.println(objetoBanco);
+      System.out.println("------------------------");
+
+      objetoBanco.setNome("Pedro Andrade");
+      dao.atualizar(objetoBanco);
+
+      System.out.println(objetoBanco);
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
 }
